@@ -22,7 +22,7 @@ O CRISP-DM é uma metodologia amplamente utilizada para guiar projetos de minera
 ## 1.3 Preparação dos Dados
 **Armazenamento:** Inserção dos dados em um banco de dados MySQL para facilitar a manipulação e execução de consultas. O acesso será feito através da integração com SQLAlchemy no Python, permitindo consultas eficientes e a realização de operações sobre grandes volumes de dados.
 
-**Consultas e extrações:** Utilização de queries SQL para responder a 10 perguntas estratégicas de negócios, explorando o comportamento dos clientes e identificando tendências de vendas e padrões de compra.
+**Consultas e extrações:** Utilização de queries SQL para responder a 5 perguntas estratégicas de negócios, explorando o comportamento dos clientes e identificando tendências de vendas e padrões de compra.
 
 **Análise RFM:** Aplicação de SQL para calcular Recência, Frequência e Valor Monetário (RFM) dos clientes. Essa análise permitirá a segmentação dos clientes com base em sua relevância para o negócio, fornecendo uma visão clara de quais clientes têm maior valor.
 
@@ -61,6 +61,14 @@ Análise de Cluster: KMeans, métodos do cotovelo e silhueta.
 - Análise preditiva: Random Forest.
 
 # 2.2 Perguntas de negócios
+- 1: Quais produtos são os mais vendidos?
+Como podemos identificar os itens mais populares entre os clientes para garantir que o estoque desses produtos esteja sempre disponível?
+- 2: Quais são as categorias de produtos mais compradas em diferentes períodos do ano? Como a sazonalidade afeta a demanda por determinados produtos e como podemos otimizar nosso inventário com base nessas informações?
+- 3: Quais são os períodos de pico de vendas? Quais dias têm maior volume de vendas? Podemos ajustar nossa estratégia de marketing ou oferta de produtos durante esses períodos?
+- 4: Quais clientes são responsáveis pelas maiores receitas? Quem são os clientes que mais gastam com base no valor total de suas compras?
+- 5: Há algum produto com baixa rotação que deve ser descontinuado? Produtos com baixo volume de vendas podem ser reavaliados para manter a eficiência do inventário.
+
+
 
 
 
