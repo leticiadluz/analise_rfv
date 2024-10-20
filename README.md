@@ -60,7 +60,7 @@ O CRISP-DM é uma metodologia amplamente utilizada para guiar projetos de minera
 Análise de Cluster: KMeans, métodos do cotovelo e silhueta.
 - Análise preditiva: Random Forest.
 
-# 2.2 Perguntas de negócios
+## 2.2 Perguntas de negócios
 - 1: Quais produtos são os mais vendidos?
 Como podemos identificar os itens mais populares entre os clientes para garantir que o estoque desses produtos esteja sempre disponível?
 - 2: Quais são as categorias de produtos mais compradas em diferentes períodos do ano? Como a sazonalidade afeta a demanda por determinados produtos e como podemos otimizar nosso inventário com base nessas informações?
