@@ -1,14 +1,14 @@
 # Análise RFM, Clusterização e Análise dos Dados
 
 # 1. CRISP-DM
-Para este projeto vamos utilizar a abordagem  CRISP-DM (Cross-Industry Standard Process for Data Mining).
+Para este projeto irei utilizar a abordagem  CRISP-DM (Cross-Industry Standard Process for Data Mining).
 
-O CRISP-DM é uma metodologia amplamente utilizada para guiar projetos de mineração de dados e ciência de dados. Ele oferece uma estrutura organizada em seis fases principais que ajudam a conduzir o processo de análise de dados desde o planejamento até a implementação
+O CRISP-DM é uma metodologia amplamente utilizada para guiar projetos de ciência de dados. Ele oferece uma estrutura organizada em seis fases principais que ajudam a conduzir o processo de análise de dados desde o planejamento até a implementação
 
 ![alt text](images/image.png)
 
 ## 1.1 Entendimento do Negócio
-**Objetivo:** Analisar detalhadamente os dados de vendas para fornecer respostas a 10 perguntas chave de negócios, realizar uma análise RFM (Recência, Frequência e Valor Monetário) para segmentar os clientes de acordo com seus comportamentos de compra e aplicar técnicas de clusterização para identificar grupos distintos de clientes. Após essa segmentação, será implementada uma análise preditiva utilizando Random Forest para prever a probabilidade de um cliente pertencer a determinado cluster e entender quais fatores mais influenciam essa classificação.
+**Objetivo:** Analisar detalhadamente os dados de vendas para fornecer respostas a 5 perguntas chave de negócios, realizar uma análise RFM (Recência, Frequência e Valor Monetário) para segmentar os clientes de acordo com seus comportamentos de compra e aplicar técnicas de clusterização para identificar grupos distintos de clientes. Após essa segmentação, será implementada uma análise preditiva utilizando Random Forest para prever a probabilidade de um cliente pertencer a determinado cluster e entender quais fatores mais influenciam essa classificação. 
 
 **Impacto esperado:** A análise permitirá uma segmentação mais eficaz dos clientes, revelando padrões de comportamento que podem ser utilizados para personalizar campanhas de marketing e estratégias de retenção. Além disso, a identificação das variáveis mais importantes no processo de decisão facilitará o desenvolvimento de ações direcionadas, melhorando a experiência do cliente e potencializando as vendas.
 
@@ -20,7 +20,7 @@ O CRISP-DM é uma metodologia amplamente utilizada para guiar projetos de minera
 **Estrutura de dados:** Contém tanto variáveis numéricas (como quantidade e preço) quanto variáveis categóricas (descrição do produto, país). Essas variáveis serão analisadas e manipuladas conforme necessário para atender aos objetivos do projeto, como a clusterização e a análise preditiva.
 
 ## 1.3 Preparação dos Dados
-**Armazenamento:** Inserção dos dados em um banco de dados MySQL para facilitar a manipulação e execução de consultas. O acesso será feito através da integração com SQLAlchemy no Python, permitindo consultas eficientes e a realização de operações sobre grandes volumes de dados.
+**Armazenamento:** Inserção dos dados em um banco de dados MySQL para facilitar a manipulação e execução de consultas. O acesso será feito através da integração com SQLAlchemy no Python, permitindo consultas eficientes e a realização de operações sobre os dados.
 
 **Consultas e extrações:** Utilização de queries SQL para responder a 5 perguntas estratégicas de negócios, explorando o comportamento dos clientes e identificando tendências de vendas e padrões de compra.
 
@@ -47,7 +47,7 @@ O CRISP-DM é uma metodologia amplamente utilizada para guiar projetos de minera
 
 ## 1.6 Implementação
 
-**Entrega dos resultados:** Além de documentar e apresentar os resultos, será disponibilizada uma tabela detalhada contendo a formação dos clusters e a probabilidade de cada cliente pertencer a cada um deles. Essa tabela poderá ser utilizada como uma base para alimentar diversos processos de negócios, como a personalização de campanhas de marketing, a otimização de estratégias de retenção e o desenvolvimento de ofertas personalizadas para cada segmento de clientes.
+**Entrega dos resultados:**  Além da documentação e apresentação dos resultados, incluindo as respostas detalhadas às cinco perguntas de negócios propostas, será disponibilizada uma tabela detalhada contendo a formação dos clusters e a probabilidade de cada cliente pertencer a cada um deles. Essa tabela poderá ser utilizada como uma base para alimentar diversos processos de negócios, como a personalização de campanhas de marketing, a otimização de estratégias de retenção e o desenvolvimento de ofertas personalizadas para cada segmento de clientes.
 
 # 2. Projeto
 ## 2.1 Ferramentas e Tecnologias Utilizadas:
@@ -57,7 +57,7 @@ O CRISP-DM é uma metodologia amplamente utilizada para guiar projetos de minera
 - Banco de Dados: MySQL.
 - Bibliotecas e suas versões:  [`requirements.txt`](./requirements.txt).
 - Versionamento: Git.
-Análise de Cluster: KMeans, métodos do cotovelo e silhueta.
+- Análise de Cluster: KMeans, métodos do cotovelo e silhueta.
 - Análise preditiva: Random Forest.
 
 ## 2.2 Perguntas de negócios
@@ -67,6 +67,15 @@ Como podemos identificar os itens mais populares entre os clientes para garantir
 - 3: Quais são os períodos de pico de vendas? Quais dias têm maior volume de vendas? Podemos ajustar nossa estratégia de marketing ou oferta de produtos durante esses períodos?
 - 4: Quais clientes são responsáveis pelas maiores receitas? Quem são os clientes que mais gastam com base no valor total de suas compras?
 - 5: Há algum produto com baixa rotação que deve ser descontinuado? Produtos com baixo volume de vendas podem ser reavaliados para manter a eficiência do inventário.
+
+# 3 Resultados
+## 3.1 Perguntas de negócios
+**1 -  Quais produtos são os mais vendidos? Como podemos identificar os itens mais populares entre os clientes para garantir que o estoque desses produtos esteja sempre disponível?**
+- Os produtos mais vendidos, conforme a análise de vendas, incluem itens como WORLD WAR 2 GLIDERS ASSTD DESIGNS, com 107.489 unidades vendidas, seguido pelo WHITE HANGING HEART T-LIGHT HOLDER com 90.008 unidades e o ASSORTED COLOUR BIRD ORNAMENT, com 79.434 unidades. Outros produtos populares incluem o JUMBO BAG RED RETROSPOT, BROCADE RING PURSE e diferentes variações de caixas de bolo, todos com volumes de vendas significativos que vão de 70.390 a 43.602 unidades. Para garantir que o estoque desses itens esteja sempre disponível e atender à demanda dos clientes, é fundamental identificar regularmente esses produtos mais vendidos. Ao fazer isso, a empresa pode evitar rupturas de estoque, melhorar a experiência do cliente, aumentar as vendas e minimizar os custos associados a excessos ou faltas de produtos em estoque. 
+
+
+
+
 
 
 
