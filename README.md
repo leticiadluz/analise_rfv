@@ -1,4 +1,4 @@
-# Análise RFM, Clusterização e Análise dos Dados
+# Análise dos Dados, Análise RFV e Clusterização
 
 # 1. CRISP-DM
 Para este projeto irei utilizar a abordagem  CRISP-DM (Cross-Industry Standard Process for Data Mining).
@@ -32,9 +32,9 @@ O CRISP-DM é uma metodologia amplamente utilizada para guiar projetos de ciênc
 ## 1.3 Preparação dos Dados
 **Armazenamento:** Inserção dos dados em um banco de dados MySQL para facilitar a manipulação e execução de consultas. O acesso será feito através da integração com SQLAlchemy no Python, permitindo consultas eficientes e a realização de operações sobre os dados.
 
-**Consultas e extrações:** Utilização de queries SQL para responder a 5 perguntas estratégicas de negócios, explorando o comportamento dos clientes e identificando tendências de vendas e padrões de compra.
+**Análise de Dados:** Utilização de queries SQL para responder a 5 perguntas estratégicas de negócios, explorando o comportamento dos clientes e identificando tendências de vendas e padrões de compra.
 
-**Análise RFM:** Aplicação de SQL para calcular Recência, Frequência e Valor Monetário (RFM) dos clientes. Essa análise permitirá a segmentação dos clientes com base em sua relevância para o negócio, fornecendo uma visão clara de quais clientes têm maior valor.
+**Análise RFV:** Aplicação de SQL para calcular Recência, Frequência e Valor Monetário (RFV) dos clientes. Essa análise permitirá a segmentação dos clientes com base em sua relevância para o negócio, fornecendo uma visão clara de quais clientes têm maior valor.
 
 **Preparação para Clusterização:** Normalização dos dados e remoção de variáveis irrelevantes para garantir que a clusterização seja feita de maneira eficiente e com dados otimizados. O processo de preparação inclui a transformação das variáveis para que o algoritmo de clusterização KMeans funcione adequadamente.
 
@@ -96,6 +96,21 @@ Como podemos identificar os itens mais populares entre os clientes para garantir
 **5 - Existem produtos com baixa rotatividade e valor unitário reduzido que deveriam ser descontinuados? Produtos com baixo volume de vendas e preço inferior podem comprometer a eficiência do inventário e, por isso, devem ser reavaliados. Para este cenário, consideraremos produtos que venderam menos de 30 unidades nos últimos dois anos e cujo valor unitário seja inferior a 1000 dólares.**
 - A análise de produtos com baixa rotatividade e valor unitário reduzido revela que cerca de 3.000 produtos caem nessa categoria, tendo vendido menos de 30 unidades e com preço unitário inferior a 10 dólares. Exemplos desses produtos incluem o COPPER AND BRASS BAG CHARM, com apenas 1 unidade vendida a 9,96 dólares, o SET/10 PINK POLKADOT PARTY CANDLES, com 1 unidade vendida a 2,46 dólares, e o TUSCAN VILLA DOVECOTE BIRD FEEDER, que vendeu 29 unidades a 8,25 dólares.. Esses itens, com baixa rotatividade e baixo valor unitário, podem estar ocupando espaço desnecessário no estoque e comprometendo a eficiência da operação. Manter produtos com vendas tão reduzidas pode resultar em custos adicionais com armazenagem e gerenciamento de inventário. Portanto, é recomendável reavaliar esses itens para considerar sua descontinuação ou substituição por produtos com maior demanda e margem de lucro mais significativa. Ao descontinuar ou revisar esses produtos de baixo desempenho, a empresa pode otimizar seu inventário, liberando espaço e recursos para focar em itens de maior demanda e valor.
 
+## 3.2 Análise RFM (Recência, Frequência, e Valor Monetário)
+- **Recência (R):** Refere-se ao tempo decorrido desde a última compra ou interação do cliente. Clientes que compraram recentemente têm maior probabilidade de fazer novas compras, enquanto aqueles que não compram há muito tempo tendem a ser menos engajados.
+- **Frequência (F):** Mede a regularidade com que o cliente realiza compras ou interage com a empresa. Clientes mais frequentes geralmente têm maior valor para a empresa e podem ser priorizados em ações de fidelização.
+- **Valor Monetário (V):** Representa o total gasto pelo cliente ao longo de suas interações com a empresa. Clientes de maior valor monetário são cruciais para o crescimento dos lucros.
+
+### 3.2.1 Metodologia
+- Para a análise, foi criada uma tabela chamada tabela_rfv, que consolida as informações de recência, frequência e valor monetário de cada cliente, com base nos dados de compras da tabela original online_retail_table disponível no MySQL. Esta tabela agregada foi gerada utilizando a querys SQL. 
+- A tabela RFV foi gerada a partir de três métricas principais:
+    - Recência: Calculada pela diferença em semanas entre a última compra de um cliente e a data mais recente registrada na base de dados.
+    - Frequência: Medida pelo número total de compras realizadas pelo cliente no período analisado.
+    - Valor Monetário: Somatório do valor total gasto por cada cliente em suas compras.
+
+- Cada métrica foi dividida em cinco categorias (quintis), utilizando a função NTILE(5) para facilitar a segmentação. Os clientes com recência mais baixa, frequência mais alta e valor monetário mais alto foram classificados com as pontuações mais elevadas.
+- A query foi executada diretamente no banco de dados MySQL utilizando o SQLAlchemy.
+- Após a geração da tabela RFV, será conduzida uma análise de clusterização utilizando algoritmos como K-means para agrupar os clientes em diferentes perfis. 
 
 
 
