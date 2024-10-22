@@ -109,6 +109,17 @@ Como podemos identificar os itens mais populares entre os clientes para garantir
     - Valor Monetário: Somatório do valor total gasto por cada cliente em suas compras.
 
 - Cada métrica foi dividida em cinco categorias (quintis), utilizando a função NTILE(5) para facilitar a segmentação. Os clientes com recência mais baixa, frequência mais alta e valor monetário mais alto foram classificados com as pontuações mais elevadas.
+
+    - Recência: 
+        - O 5º quintil terá os clientes que fizeram compras mais recentemente.
+        - O 1º quintil terá os clientes que estão inativos há mais tempo.
+    - Frequência:
+        - O 5º quintil corresponde aos clientes que compraram com mais frequência, sendo os clientes mais ativos.
+        -  1º quintil inclui os clientes que compraram menos vezes.
+    - Valor Monetário:
+         - O 5º quintil representa os clientes que gastaram mais dinheiro (clientes de maior valor).
+         - O 1º quintil agrupa aqueles que gastaram menos.
+
 - A query foi executada diretamente no banco de dados MySQL utilizando o SQLAlchemy.
 - Após a geração da tabela RFV, será conduzida uma análise de clusterização utilizando algoritmos como K-means para agrupar os clientes em diferentes perfis. 
 
