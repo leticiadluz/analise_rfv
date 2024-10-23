@@ -3,5 +3,5 @@
 *.csv
 *.xlsx
 versoes.py
-.pkl
-.npy
+*.pkl
+*.npy
