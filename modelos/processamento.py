@@ -1,3 +1,4 @@
+#Bibliotecas
 from sqlalchemy import create_engine
 from sqlalchemy import text
 import pandas as pd
@@ -18,16 +19,15 @@ db_host = host
 db_port = port       
 db_name = database     
 
-# String de conexão para MySQL usando PyMySQL
 db_string = f'mysql+pymysql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}'
-
-# Criando a engine do SQLAlchemy
 engine = create_engine(db_string)
 
 query = '''
 SELECT * FROM tabela_rfv
 ORDER BY RAND()
-LIMIT 50000;
+LIMIT 30000;
 '''
 df_clusterizacao = pd.read_sql_query(query, con=engine)
 print(df_clusterizacao.head())
+print(df_clusterizacao.info())
+df_clusterizacao.to_pickle('df_clusterizacao.pkl')
