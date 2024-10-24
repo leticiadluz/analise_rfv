@@ -130,6 +130,8 @@ Como podemos identificar os itens mais populares entre os clientes para garantir
 
 ![!\[\](imagens/avaliacao_](imagens/avaliacao_k.png)
 
+- Score de Silhueta para KMeans: 0.4628
+
 ##  3.3.1 Análise por Cluster
 ![alt text](imagens/analise_clusters.png)
 
