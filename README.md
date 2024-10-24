@@ -8,9 +8,14 @@ O CRISP-DM é uma metodologia amplamente utilizada para guiar projetos de ciênc
 ![alt text](imagens/imagem.png)
 
 ## 1.1 Entendimento do Negócio
-**Objetivo:** Analisar detalhadamente os dados de vendas para fornecer respostas a 5 perguntas chave de negócios, realizar uma análise RFM (Recência, Frequência e Valor Monetário) para segmentar os clientes de acordo com seus comportamentos de compra e aplicar técnicas de clusterização para identificar grupos distintos de clientes. Após essa segmentação, será implementada uma análise preditiva utilizando Random Forest para prever a probabilidade de um cliente pertencer a determinado cluster e entender quais fatores mais influenciam essa classificação. 
+**Objetivo:** Analisar detalhadamente os dados de vendas para fornecer respostas a 5 perguntas chave de negócios, realizar uma análise RFM (Recência, Frequência e Valor Monetário) para segmentar os clientes de acordo com seus comportamentos de compra e aplicar técnicas de clusterização para identificar grupos distintos de clientes. 
 
-**Impacto esperado:** A análise permitirá uma segmentação mais eficaz dos clientes, revelando padrões de comportamento que podem ser utilizados para personalizar campanhas de marketing e estratégias de retenção. Além disso, a identificação das variáveis mais importantes no processo de decisão facilitará o desenvolvimento de ações direcionadas, melhorando a experiência do cliente e potencializando as vendas.
+**Impacto esperado:** A análise permitirá uma segmentação mais eficaz dos clientes, revelando padrões de comportamento que podem ser utilizados para personalizar campanhas de marketing e estratégias de retenção. 
+
+**Requisitos:**  
+    - Dados: Necessidade de um conjunto de dados completo e limpo com informações históricas de vendas. Os dados devem conter campos essenciais como: InvoiceNo, CustomerID, InvoiceDate, Quantity, UnitPrice, StockCode, Description, e Country, além de informações de transações para calcular corretamente as métricas de Recência, Frequência e Valor Monetário.
+    - Ferramentas: Utilização de Python e bibliotecas como pandas e numpy para manipulação de dados, além de scikit-learn para a implementação de algoritmos de clusterização.
+    - Análise RFM:(terminar)
 
 ## 1.2 Entendimento dos Dados
 **Dataset:** Online Retail II, disponível [aqui.](https://archive.ics.uci.edu/dataset/502/online+retail+ii) O conjunto de dados contém transações de uma loja de varejo online com sede no Reino Unido, abrangendo o período entre 2009 e 2011.
@@ -38,14 +43,9 @@ O CRISP-DM é uma metodologia amplamente utilizada para guiar projetos de ciênc
 
 **Preparação para Clusterização:** Normalização dos dados e remoção de variáveis irrelevantes para garantir que a clusterização seja feita de maneira eficiente e com dados otimizados. O processo de preparação inclui a transformação das variáveis para que o algoritmo de clusterização KMeans funcione adequadamente.
 
-**Árvore de Decisão (Random Forest):** Após a segmentação dos clientes por meio do KMeans, uma árvore de decisão, utilizando o modelo Random Forest, será aplicada para prever a probabilidade de um cliente pertencer a determinado cluster. Essa etapa é essencial, pois a árvore de decisão não apenas gera previsões, mas também nos mostra as variáveis que mais impactaram a segmentação. Com isso, será possível identificar quais fatores são determinantes na classificação dos clientes, permitindo uma melhor compreensão do comportamento deles e auxiliando na criação de estratégias de marketing mais eficazes.
 
 ## 1.4 Modelagem
 **Clusterização:** Aplicação do KMeans para segmentação de clientes. Uso dos métodos do cotovelo e da silhueta para determinar o número ideal de clusters.
-
-**Classificação:** Inclusão dos rótulos de cluster no dataset e aplicação de Random Forest para prever a probabilidade de um cliente pertencer a um determinado cluster.
-
-**Interpretação:** Análise das features mais importantes no modelo Random Forest para entender os fatores-chave na classificação dos clientes.
 
 ## 1.5 Avaliação
 
@@ -53,11 +53,10 @@ O CRISP-DM é uma metodologia amplamente utilizada para guiar projetos de ciênc
 - Método do Cotovelo: Avalia a inércia (soma das distâncias quadradas dentro dos clusters) para determinar o número ideal de clusters. A escolha do ponto de inflexão no gráfico de inércia indicará o número adequado de clusters.
 - Coeficiente de Silhueta: Medirá a coesão e a separação dos clusters. Um valor de silhueta próximo de 1 indica que os clientes estão bem segmentados em seus respectivos grupos, enquanto valores próximos de 0 indicam que eles estão mal segmentados ou nas fronteiras dos clusters.
 
-**Métricas de Classificação:** A classificação será feita utilizando Random Forest, e a principal métrica de avaliação será o **Log Loss (Perda Logarítmica)**, que é a métrica mais adequada quando o objetivo é otimizar a probabilidade de um cliente pertencer a determinado cluster. O Log Loss penaliza previsões de probabilidade incorretas de forma mais sensível, garantindo que o modelo não apenas acerte a classe, mas também faça previsões de probabilidade robustas e confiáveis.
 
 ## 1.6 Implementação
 
-**Entrega dos resultados:**  Além da documentação e apresentação dos resultados, incluindo as respostas detalhadas às cinco perguntas de negócios propostas, será disponibilizada uma tabela detalhada contendo a formação dos clusters e a probabilidade de cada cliente pertencer a cada um deles. Essa tabela poderá ser utilizada como uma base para alimentar diversos processos de negócios, como a personalização de campanhas de marketing, a otimização de estratégias de retenção e o desenvolvimento de ofertas personalizadas para cada segmento de clientes.
+**Entrega dos resultados:**  Além da documentação e apresentação dos resultados, incluindo as respostas detalhadas às cinco perguntas de negócios propostas, será disponibilizada uma tabela detalhada contendo a formação dos clusters dos clientes.
 
 # 2. Projeto
 ## 2.1 Ferramentas e Tecnologias Utilizadas:
@@ -68,7 +67,6 @@ O CRISP-DM é uma metodologia amplamente utilizada para guiar projetos de ciênc
 - Bibliotecas e suas versões:  [`requirements.txt`](./requirements.txt).
 - Versionamento: Git.
 - Análise de Cluster: KMeans, métodos do cotovelo e silhueta.
-- Análise preditiva: Random Forest.
 
 ## 2.2 Perguntas de negócios
 - 1: Quais produtos são os mais vendidos?
@@ -122,6 +120,30 @@ Como podemos identificar os itens mais populares entre os clientes para garantir
 
 - A query foi executada diretamente no banco de dados MySQL utilizando o SQLAlchemy.
 - Após a geração da tabela RFV, será conduzida uma análise de clusterização utilizando algoritmos como K-means para agrupar os clientes em diferentes perfis.
+
+### 3.2.2 Categorias de Clientes:
+![](imagens/analise_rfv.png)
+
+- **Campeões:** Clientes que possuem as maiores pontuações de Recência, Frequência e Valor Monetário (todas iguais a 5). Estes são os clientes mais valiosos e leais, comprando frequentemente, recentemente, e com um valor monetário elevado. São os melhores clientes da empresa e merecem atenção especial para mantê-los engajados e satisfeitos.  
+    - Recência = 5, Frequência = 5, Valor Monetário = 5
+- **Clientes Fiéis:** São clientes que compram com alta frequência e possuem uma recência e valor monetário moderado a alto. Eles estão entre os principais clientes da empresa, apesar de não serem os campeões. A lealdade deles é um indicativo de que merecem atenção contínua para manter seu nível de engajamento. 
+    - Recência >= 3, Frequência >= 4, Valor Monetário >= 3
+- **Potencial para Fiéis:**  Esses clientes estão próximos de se tornarem leais. Eles têm uma boa recência, mas frequência moderada, o que indica que estão em um estágio de desenvolvimento. Com as estratégias certas, eles podem ser convertidos em clientes fiéis.
+    - Recência >= 3, Frequência = 3, Valor Monetário >= 3
+- **Novos Clientes:** Clientes que fizeram sua primeira compra muito recentemente, mas ainda não demonstraram um comportamento de compra frequente. Eles são novos para o negócio e têm potencial para se tornar clientes fiéis com o tempo. O foco deve estar em aumentar o engajamento e criar um relacionamento de longo prazo.
+    - Recência >= 4, Frequência <= 2
+- **Promissores:** Estes são clientes que fizeram uma compra recente, mas têm baixo valor monetário. Eles mostram promessa de crescimento se forem engajados adequadamente. Com a estratégia certa, esses clientes podem evoluir para categorias mais valiosas, como "Clientes Fiéis".
+    - Recência >= 4, Frequência > 2, Valor Monetário IN (1, 2)
+- **Clientes que Precisam de Atenção:** Estes são clientes que a empresa deve focar, pois têm recência e frequência moderadas, mas seu valor monetário é significativo o suficiente para justificar atenção extra. O risco de perder esses clientes está presente, mas com um pequeno esforço eles podem se tornar mais ativos e lucrativos.
+    - Recência entre 1 e 3, Frequência entre 1 e 5, Valor Monetário IN (3, 4)
+- **Não Pode Perder:** Estes são clientes valiosos que não fizeram compras recentemente. Eles estão em alto risco de se tornarem inativos, mas seu valor passado indica que vale a pena tentar retê-los. Incentivos especiais ou campanhas de retenção podem ser eficazes para evitar a perda desses clientes, dada sua alta contribuição financeira anterior.
+    - Recência entre 1 e 3, Frequência entre 1 e 5, Valor Monetário = 5
+- **Quase Dormindo:** Estes clientes têm recência e frequência moderadas, mas seu valor monetário é baixo. Eles estão em risco de se tornarem inativos. Um esforço para reativá-los através de ofertas, campanhas de marketing ou atendimento personalizado pode aumentar a frequência de compras e movê-los para categorias mais lucrativas.
+    - Recência entre 1 e 3, Frequência IN (3, 4), Valor Monetário IN (1, 2)
+- **Em Risco:** Estes clientes estão em perigo de abandono. Eles têm uma recência e frequência baixas, e seu valor monetário também é baixo. Eles estão à beira de se tornarem clientes inativos ou perdidos, e uma ação imediata é necessária para tentar salvá-los.
+    - Recência entre 1 e 3, Frequência IN (1, 2), Valor Monetário = 2
+- **Perdidos ou Hibernando:** Clientes que se tornaram inativos e têm um valor monetário muito baixo. Esses clientes já não estão engajados e podem ser difíceis de reativar. O foco aqui pode ser limitado, mas ofertas especiais ou reengajamento podem ser tentados para trazê-los de volta, dependendo da estratégia de retenção da empresa.
+    - Recência entre 1 e 3, Frequência IN (1, 2), Valor Monetário = 1
 
 ## 3.3 Clusterização
 - Na análise de segmentação de clientes utilizando KMeans, aplicamos os métodos do Cotovelo e da Silhueta para determinar o número ideal de clusters. O método do Cotovelo avalia a inércia (a soma das distâncias quadradas dos pontos ao centro do cluster), enquanto o método da Silhueta mede a qualidade da separação entre os clusters.
