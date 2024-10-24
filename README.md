@@ -125,24 +125,22 @@ Como podemos identificar os itens mais populares entre os clientes para garantir
 
 ## 3.3 Clusterização
 - Na análise de segmentação de clientes utilizando KMeans, aplicamos os métodos do Cotovelo e da Silhueta para determinar o número ideal de clusters. O método do Cotovelo avalia a inércia (a soma das distâncias quadradas dos pontos ao centro do cluster), enquanto o método da Silhueta mede a qualidade da separação entre os clusters.
-- Observamos que, ao aumentar o número de clusters, a inércia diminui significativamente até o ponto onde as reduções se tornam menos acentuadas, sugerindo 5 clusters como uma boa escolha. A análise da Silhueta confirma essa decisão, com uma pontuação máxima também próxima de 5 clusters, indicando uma melhor coesão e separação entre os grupos.
+- Observamos que, ao aumentar o número de clusters, a inércia diminui significativamente até o ponto onde as reduções se tornam menos acentuadas, sugerindo 5 clusters como uma boa escolha. - O gráfico da média da silhueta também indica que a qualidade dos clusters é melhor para valores mais baixos de k, com um pico em k=2, mas a partir de  k=5, a média da silhueta começa a cair significativamente. Isso sugere que a separação entre clusters é mais clara para k≤5.
+- Ambos os métodos sugerem que um valor próximo de k=5 parece ser o mais adequado. O método da silhueta mostra que  k=2 tem a maior separação, mas o cotovelo aponta k=5 como uma boa escolha balanceada entre a separação e a redução da inércia.
 - Com base nessas avaliações, decidimos seguir com 5 clusters, visando otimizar a segmentação dos clientes e melhorar a interpretação dos grupos.
 
-![!\[\](imagens/avaliacao_](imagens/avaliacao_k.png)
+![alt text](imagens/avaliacao_k.png)
 
 - Score de Silhueta para KMeans: 0.4628
 
 ##  3.3.1 Análise por Cluster
 ![alt text](imagens/analise_clusters.png)
 
-- **Cluster 0:** A maior parte dos clientes do cluster 0 realiza compras regulares, com todos classificados na frequência 5, o que indica alta lealdade e engajamento. Esses clientes também estão na faixa de valor monetário 5, sugerindo que fazem compras significativas, tanto em volume quanto em valor. No entanto, a recência está distribuída, como ocorre em outros clusters. É importante investigar os clientes com baixa recência para verificar se eles não realizaram um grande volume de compras em um período concentrado e agora estão em risco de churn, ou seja, se tornarem inativos.
+- **Cluster 0:** Este grupo exibe uma ampla diversidade em termos de recência e frequência de compra. Alguns clientes são de alto valor, alta recência e fazem compras com alta frequência, demonstrando um engajamento recente. Outros, apesar de terem um alto valor monetário, apresentam uma frequência média ou baixa e podem não ter realizado compras recentemente. Para esses clientes, a análise deve focar tanto na retenção dos mais ativos quanto na reativação daqueles que estão em risco de churn. A variação na recência entre os membros do cluster exige uma abordagem segmentada para atender adequadamente às diferentes necessidades e comportamentos identificados.
 
-- **Cluster 1:** Os clientes do cluster 1 possuem uma menor frequência e um menor valor monetário, mas apresentam duas características distintas com base na recência. Aqueles com baixa recência, baixa frequência e baixo valor monetário são potenciais churn, indicando que podem estar em risco de abandonar a marca. Por outro lado, clientes com alta recência, embora também tenham baixa frequência e baixo valor, podem ser novos clientes, ainda em fase inicial de relacionamento.
+- **Cluster 1, 2 e 4** Esses clusters compartilham as mesmas características entre si. A maior parte dos clientes realiza compras regulares, com todos classificados na frequência 5, o que indica alta lealdade e engajamento. Esses clientes também estão na faixa de valor monetário 5, sugerindo que fazem compras significativas, tanto em volume quanto em valor. No entanto, a recência está bem distribuída, como ocorre em outros clusters. É importante investigar os clientes com baixa recência para verificar se eles não realizaram um grande volume de compras em um período concentrado e agora estão em risco de churn, ou seja, se tornarem inativos.
 
-- **Cluster 2 e 3:** Esses clusters compartilham as mesmas características do cluster 0, com clientes altamente leais e engajados, que compram frequentemente e têm alto valor monetário. Assim como no cluster 0, é necessário monitorar os clientes com baixa recência para identificar possíveis sinais de churn.
-
-- **Cluster 4:** Este cluster apresenta uma diversidade significativa em termos de frequência e valor monetário. Alguns membros desse grupo são clientes de alto valor e alta frequência que fizeram compras recentemente, enquanto outros têm média frequência e médio valor monetário e podem não ter realizado compras recentes. A análise desses clientes deve considerar tanto aqueles que continuam ativamente engajados quanto os que podem estar em risco de se tornarem inativos. A variada distribuição de recência neste cluster exige uma avaliação cuidadosa para entender as diferentes necessidades e comportamentos dentro deste grupo.
-
+- **Cluster 3:** A maioria dos clientes neste cluster apresenta baixa frequência de compras e menor valor monetário, mas exibem diferentes características quando analisados em termos de recência, frequência e valor. Aqueles com baixa recência, frequência e valor são potenciais candidatos ao churn, indicando um risco elevado de abandonar a marca. Por outro lado, clientes com alta recência, apesar da baixa frequência e valor, podem ser novos consumidores que estão ainda no início de seu relacionamento com a marca. Além disso, há também um grupo de clientes que já demonstra maior valor monetário e frequência de compras, sinalizando um nível mais alto de engajamento.
 
 
 

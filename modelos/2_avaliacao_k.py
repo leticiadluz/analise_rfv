@@ -22,7 +22,7 @@ inercias = []
 scores_silhueta = []
 
 for k in k_valores:
-    kmeans = KMeans(n_clusters=k, init = 'k-means++', n_init='auto', random_state=42)
+    kmeans = KMeans(n_clusters=k, init = 'k-means++', n_init=10, random_state=42)
     kmeans.fit(X)
     inercias.append(kmeans.inertia_)
 

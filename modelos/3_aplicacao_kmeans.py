@@ -7,7 +7,8 @@ import matplotlib.pyplot as plt
 
 X = np.load('X_array.npy')
 
-kmeans = KMeans(n_clusters=5, init='k-means++', n_init='auto', max_iter = 300)
+kmeans = KMeans(n_clusters=5, init='k-means++', n_init=10, max_iter=300, random_state=42)
+
 kmeans_labels = kmeans.fit_predict(X)
 
 kmeans_silhouette = silhouette_score(X, kmeans_labels)
