@@ -121,7 +121,29 @@ Como podemos identificar os itens mais populares entre os clientes para garantir
          - O 1º quintil agrupa aqueles que gastaram menos.
 
 - A query foi executada diretamente no banco de dados MySQL utilizando o SQLAlchemy.
-- Após a geração da tabela RFV, será conduzida uma análise de clusterização utilizando algoritmos como K-means para agrupar os clientes em diferentes perfis. 
+- Após a geração da tabela RFV, será conduzida uma análise de clusterização utilizando algoritmos como K-means para agrupar os clientes em diferentes perfis.
+
+## 3.3 Clusterização
+- Na análise de segmentação de clientes utilizando KMeans, aplicamos os métodos do Cotovelo e da Silhueta para determinar o número ideal de clusters. O método do Cotovelo avalia a inércia (a soma das distâncias quadradas dos pontos ao centro do cluster), enquanto o método da Silhueta mede a qualidade da separação entre os clusters.
+- Observamos que, ao aumentar o número de clusters, a inércia diminui significativamente até o ponto onde as reduções se tornam menos acentuadas, sugerindo 5 clusters como uma boa escolha. A análise da Silhueta confirma essa decisão, com uma pontuação máxima também próxima de 5 clusters, indicando uma melhor coesão e separação entre os grupos.
+- Com base nessas avaliações, decidimos seguir com 5 clusters, visando otimizar a segmentação dos clientes e melhorar a interpretação dos grupos.
+
+![!\[\](imagens/avaliacao_](imagens/avaliacao_k.png)
+
+##  3.3.1 Análise por Cluster
+![alt text](imagens/analise_clusters.png)
+
+- **Cluster 0:** A maior parte dos clientes do cluster 0 realiza compras regulares, com todos classificados na frequência 5, o que indica alta lealdade e engajamento. Esses clientes também estão na faixa de valor monetário 5, sugerindo que fazem compras significativas, tanto em volume quanto em valor. No entanto, a recência está distribuída, como ocorre em outros clusters. É importante investigar os clientes com baixa recência para verificar se eles não realizaram um grande volume de compras em um período concentrado e agora estão em risco de churn, ou seja, se tornarem inativos.
+
+- **Cluster 1:** Os clientes do cluster 1 possuem uma menor frequência e um menor valor monetário, mas apresentam duas características distintas com base na recência. Aqueles com baixa recência, baixa frequência e baixo valor monetário são potenciais churn, indicando que podem estar em risco de abandonar a marca. Por outro lado, clientes com alta recência, embora também tenham baixa frequência e baixo valor, podem ser novos clientes, ainda em fase inicial de relacionamento.
+
+- **Cluster 2 e 3:** Esses clusters compartilham as mesmas características do cluster 0, com clientes altamente leais e engajados, que compram frequentemente e têm alto valor monetário. Assim como no cluster 0, é necessário monitorar os clientes com baixa recência para identificar possíveis sinais de churn.
+
+- **Cluster 4:** Este cluster apresenta uma diversidade significativa em termos de frequência e valor monetário. Alguns membros desse grupo são clientes de alto valor e alta frequência que fizeram compras recentemente, enquanto outros têm média frequência e médio valor monetário e podem não ter realizado compras recentes. A análise desses clientes deve considerar tanto aqueles que continuam ativamente engajados quanto os que podem estar em risco de se tornarem inativos. A variada distribuição de recência neste cluster exige uma avaliação cuidadosa para entender as diferentes necessidades e comportamentos dentro deste grupo.
+
+
+
+
 
 
 
