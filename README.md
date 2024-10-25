@@ -184,8 +184,9 @@ Como podemos identificar os itens mais populares entre os clientes para garantir
 
 ---
 Autor:
-Leticia da Luz  
-[LinkedIn](https://www.linkedin.com/in/leticiadluz/)
+Leticia da Luz
+  
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?style=flat&logo=linkedin)](https://www.linkedin.com/in/leticiadluz/)
 
 
 
