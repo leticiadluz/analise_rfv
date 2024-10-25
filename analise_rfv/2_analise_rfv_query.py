@@ -51,7 +51,6 @@ ORDER BY NUM_CLIENTES DESC
 '''
 print(pd.read_sql_query(query, con=engine))
 
-
 resultados_categorias = pd.read_sql_query(query, con=engine)
 
 fig, ax = plt.subplots(figsize=(8, 6))
