@@ -23,7 +23,7 @@ db_string = f'mysql+pymysql://{db_user}:{db_password}@{db_host}:{db_port}/{db_na
 engine = create_engine(db_string)
 
 query = '''
-SELECT * FROM tabela_rfv
+SELECT * FROM RFV_TABELA
 ORDER BY RAND()
 LIMIT 30000;
 '''

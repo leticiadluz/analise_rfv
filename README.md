@@ -8,14 +8,15 @@ O CRISP-DM é uma metodologia amplamente utilizada para guiar projetos de ciênc
 ![alt text](imagens/imagem.png)
 
 ## 1.1 Entendimento do Negócio
-**Objetivo:** Analisar detalhadamente os dados de vendas para fornecer respostas a 5 perguntas chave de negócios, realizar uma análise RFM (Recência, Frequência e Valor Monetário) para segmentar os clientes de acordo com seus comportamentos de compra e aplicar técnicas de clusterização para identificar grupos distintos de clientes. 
+**Objetivo:** Analisar detalhadamente os dados de vendas para fornecer respostas a 5 perguntas chave de negócios, implementar uma análise RFM (Recência, Frequência e Valor Monetário) para segmentar os clientes de acordo com seus comportamentos de compra e aplicar técnicas de clusterização para identificar grupos distintos de clientes. 
 
-**Impacto esperado:** A análise permitirá uma segmentação mais eficaz dos clientes, revelando padrões de comportamento que podem ser utilizados para personalizar campanhas de marketing e estratégias de retenção. 
+**Impacto esperado e solução esperada:** A análise permitirá uma segmentação mais eficaz dos clientes, revelando padrões de comportamento que podem ser utilizados para personalizar campanhas de marketing e estratégias de retenção. Atualmente, sem uma segmentação clara, as campanhas de marketing e as iniciativas de retenção são menos direcionadas, o que pode resultar em baixo retorno sobre o investimento e perda de oportunidades de engajamento com diferentes grupos de clientes. 
 
 **Requisitos:**  
-    - Dados: Necessidade de um conjunto de dados completo e limpo com informações históricas de vendas. Os dados devem conter campos essenciais como: InvoiceNo, CustomerID, InvoiceDate, Quantity, UnitPrice, StockCode, Description, e Country, além de informações de transações para calcular corretamente as métricas de Recência, Frequência e Valor Monetário.
-    - Ferramentas: Utilização de Python e bibliotecas como pandas e numpy para manipulação de dados, além de scikit-learn para a implementação de algoritmos de clusterização.
-    - Análise RFM:(terminar)
+    - Dados: É fundamental ter um conjunto de dados histórico completo e bem organizado com campos essenciais, incluindo InvoiceNo, CustomerID, InvoiceDate, Quantity, UnitPrice, StockCode, Description e Country. Esses dados serão a base para calcular as métricas de Recência, Frequência e Valor Monetário e permitir uma análise RFM precisa.  
+
+    - Ferramentas: Para a manipulação e análise dos dados, foi usada uma combinação de SQL com o banco de dados MySQL, conectado ao Python para facilitar consultas e transformações eficientes nos dados. Python, juntamente com a biblioteca scikit-learn permitirá a implementação de algoritmos de clusterização. Essa integração entre MySQL e Python otimiza o fluxo de dados, facilitando a execução da análise RFM e a identificação de padrões de comportamento nos clientes.
+
 
 ## 1.2 Entendimento dos Dados
 **Dataset:** Online Retail II, disponível [aqui.](https://archive.ics.uci.edu/dataset/502/online+retail+ii) O conjunto de dados contém transações de uma loja de varejo online com sede no Reino Unido, abrangendo o período entre 2009 e 2011.
@@ -41,18 +42,17 @@ O CRISP-DM é uma metodologia amplamente utilizada para guiar projetos de ciênc
 
 **Análise RFV:** Aplicação de SQL para calcular Recência, Frequência e Valor Monetário (RFV) dos clientes. Essa análise permitirá a segmentação dos clientes com base em sua relevância para o negócio, fornecendo uma visão clara de quais clientes têm maior valor.
 
-**Preparação para Clusterização:** Normalização dos dados e remoção de variáveis irrelevantes para garantir que a clusterização seja feita de maneira eficiente e com dados otimizados. O processo de preparação inclui a transformação das variáveis para que o algoritmo de clusterização KMeans funcione adequadamente.
+**Preparação para Clusterização:** Dimensionamento dos dados e remoção de variáveis irrelevantes para garantir que a clusterização seja feita de maneira eficiente e com dados otimizados. O processo de preparação inclui a transformação das variáveis para que o algoritmo de clusterização KMeans funcione adequadamente.
 
 
 ## 1.4 Modelagem
-**Clusterização:** Aplicação do KMeans para segmentação de clientes. Uso dos métodos do cotovelo e da silhueta para determinar o número ideal de clusters.
+**Clusterização:** Clusterização: Implementação do algoritmo KMeans para segmentação de clientes com base nos dados RFM. Para definir o número ideal de clusters, serão aplicados os métodos do Cotovelo e da Silhueta, permitindo uma análise quantitativa da estrutura dos clusters e garantindo uma segmentação que maximize a homogeneidade dentro dos grupos e a distinção entre eles.
 
 ## 1.5 Avaliação
 
 **Métricas de Clusterização:** A qualidade dos clusters será avaliada utilizando duas abordagens principais:  
 - Método do Cotovelo: Avalia a inércia (soma das distâncias quadradas dentro dos clusters) para determinar o número ideal de clusters. A escolha do ponto de inflexão no gráfico de inércia indicará o número adequado de clusters.
 - Coeficiente de Silhueta: Medirá a coesão e a separação dos clusters. Um valor de silhueta próximo de 1 indica que os clientes estão bem segmentados em seus respectivos grupos, enquanto valores próximos de 0 indicam que eles estão mal segmentados ou nas fronteiras dos clusters.
-
 
 ## 1.6 Implementação
 
@@ -147,13 +147,13 @@ Como podemos identificar os itens mais populares entre os clientes para garantir
 
 ## 3.3 Clusterização
 - Na análise de segmentação de clientes utilizando KMeans, aplicamos os métodos do Cotovelo e da Silhueta para determinar o número ideal de clusters. O método do Cotovelo avalia a inércia (a soma das distâncias quadradas dos pontos ao centro do cluster), enquanto o método da Silhueta mede a qualidade da separação entre os clusters.
-- Observamos que, ao aumentar o número de clusters, a inércia diminui significativamente até o ponto onde as reduções se tornam menos acentuadas, sugerindo 5 clusters como uma boa escolha. - O gráfico da média da silhueta também indica que a qualidade dos clusters é melhor para valores mais baixos de k, com um pico em k=2, mas a partir de  k=5, a média da silhueta começa a cair significativamente. Isso sugere que a separação entre clusters é mais clara para k≤5.
-- Ambos os métodos sugerem que um valor próximo de k=5 parece ser o mais adequado. O método da silhueta mostra que  k=2 tem a maior separação, mas o cotovelo aponta k=5 como uma boa escolha balanceada entre a separação e a redução da inércia.
-- Com base nessas avaliações, decidimos seguir com 5 clusters, visando otimizar a segmentação dos clientes e melhorar a interpretação dos grupos.
+- Observamos que, ao aumentar o número de clusters, a inércia diminui significativamente até o ponto onde as reduções se tornam menos acentuadas, sugerindo 4 clusters como a escolha ideal. O gráfico da média da silhueta também indica que a qualidade dos clusters é melhor para valores mais baixos de k, com um pico em k = 4, sugerindo que a separação entre os clusters é mais clara para esse valor.
+- Ambos os métodos sugerem que k = 4 é o número de clusters mais adequado. O método da silhueta mostra que k = 4 oferece a melhor separação, e o cotovelo também aponta esse valor como uma escolha balanceada entre a separação e a redução da inércia.
+- Com base nessas avaliações, decidimos seguir com 4 clusters, visando otimizar a segmentação dos clientes e melhorar a interpretação dos grupos.
 
 ![alt text](imagens/avaliacao_k.png)
 
-- Score de Silhueta para KMeans: 0.4628
+- Score de Silhueta para KMeans: 0.7496
 
 ##  3.3.1 Análise por Cluster
 ![alt text](imagens/analise_clusters.png)

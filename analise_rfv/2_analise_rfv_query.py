@@ -41,7 +41,7 @@ WHEN RECENCIA BETWEEN 1 AND 3 AND FREQUENCIA IN (1,2) AND VALOR_MONET = 2 THEN '
 WHEN RECENCIA BETWEEN 1 AND 3 AND FREQUENCIA IN (1,2) AND VALOR_MONET = 1 THEN 'Perdidos ou Hibernando'
 ELSE 'Sem Categoria'
 END AS CATEGORIA 
-FROM tabela_rfv
+FROM RFV_TABELA
 )
 SELECT CATEGORIA, COUNT(*) AS NUM_CLIENTES,
 ROUND((COUNT(*) * 100.0 / SUM(COUNT(*)) OVER()), 2) AS PORCENTAGEM
@@ -50,6 +50,8 @@ GROUP BY CATEGORIA
 ORDER BY NUM_CLIENTES DESC
 '''
 print(pd.read_sql_query(query, con=engine))
+
+
 resultados_categorias = pd.read_sql_query(query, con=engine)
 
 fig, ax = plt.subplots(figsize=(8, 6))
